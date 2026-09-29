@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import "./styles/tokens.css";
+
+@theme {
+  --color-page: var(--bg-page);
+  --color-card: var(--bg-card);
+  --color-sidebar: var(--bg-sidebar);
+  --color-topbar: var(--bg-topbar);
+  --color-subtle: var(--bg-subtle);
+  --color-line: var(--border);
+  --color-nav-active: var(--bg-nav-active);
+  --color-background: var(--background);
+  --color-popover: var(--popover);
+  --color-muted: var(--muted);
+  --shadow-card: var(--shadow-card);
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    overflow-x: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .dark body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Adaptive Theme Utilities mapped to surface tokens */
+.theme-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  box-shadow: var(--shadow-card);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-card-hover:hover {
+  border-color: #0d9488;
+  box-shadow: 0 4px 12px -2px rgba(13, 148, 136, 0.12);
+}
+
+.theme-nav {
+  background-color: var(--bg-topbar);
+  border-color: var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.theme-subnav {
+  background-color: var(--bg-card);
+  border-color: var(--border);
+}
+
+.theme-table-header {
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.theme-table-row:hover {
+  background-color: var(--bg-subtle);
+}
+
+.theme-input {
+  background-color: var(--bg-card);
+  border-color: var(--border);
+  color: var(--text-main);
+}
+
+.theme-input:focus {
+  border-color: #0d9488;
+  outline: none;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
